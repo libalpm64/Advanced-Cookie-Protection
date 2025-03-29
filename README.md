@@ -29,13 +29,15 @@ Social media platforms present a challenge for **IP-based security** due to freq
 #### **Mobile Override**
 
 - Implement **hardware-based identification (HWID)** for mobile devices.
-    
+- Update: This could include a file tailored specifically for that mobile device (for example, an encryption key stored on the device), so it doesn't have to rely on a mobile device identifier that could be used for malicious or tracking purposes.
+
 - The mobile cookie flag should **only be applied on mobile devices** and remain separate from desktop-based authentication.
     
 - Since mobile devices are **generally more secure than desktops**, we assume they are not compromised.
     
-- The session should **only be invalidated if the HWID does not match**, avoiding the need for constant IP lookups via **MaxMind** or similar services.
-    
+- The session should **only request for reauthenication if the HWID does not match**, avoiding the need for constant IP lookups via **MaxMind** or similar services.
+
+- Previous sessions should still be able to access them until the expiration window is over, which allows older sessions to remain functional if the IP address still matches or the mobile device identifier is the same.    
 
 #### **Tracking IP Changes**
 
@@ -71,7 +73,7 @@ Save
 
 ### **Law Enforcement**
 
-While this system enhances security, it could also create complications for **law enforcement**. Without access to the **user’s IP network**, **law enforcement** may not be able to log in to an account, which could present legal challenges. To address this, it may be necessary to allow the addition of a **trusted IP address** that would **legally** grant access to law enforcement, especially when dealing with timely investigations.
+While this system enhances security, it could also create complications for **law enforcement**. Without access to the **user’s IP network**, **law enforcement** may not be able to log in to an account, which could present legal challenges. To address this, it may be necessary to allow the addition of a **trusted IP address** that would **legally** grant access to law enforcement, as it is illegal to withhold data in criminal investigations, especially those involving time-sensitive matters.
 
 ---
 
